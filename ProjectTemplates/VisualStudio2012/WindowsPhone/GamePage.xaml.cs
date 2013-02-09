@@ -22,16 +22,10 @@ namespace $safeprojectname$
         {
             InitializeComponent();
 
-            _game = XamlGame<Game1>.Create("", XnaSurface);
+            _game = XamlGame<Game1>.Create("", this);
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
-        }
-
-        private void GamePageWP8_BackKeyPress(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Microsoft.Xna.Framework.Input.GamePad.OnBackPressed();
-            e.Cancel = true;
         }
 
         // Sample code for building a localized ApplicationBar

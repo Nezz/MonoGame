@@ -152,6 +152,7 @@ namespace MonoGame.Framework.WindowsPhone
             WindowsPhoneGameWindow.Page = page;
 
             Microsoft.Xna.Framework.Media.MediaPlayer._mediaElement = mediaElement;
+            page.BackKeyPress += Microsoft.Xna.Framework.Input.GamePad.GamePageWP8_BackKeyPress;
 
             // Construct the game.
             var game = new T();
