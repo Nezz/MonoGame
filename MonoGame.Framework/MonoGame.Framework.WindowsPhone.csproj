@@ -308,6 +308,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="WindowsPhone\DrawingSurfaceInterop.cs" />
+    <Compile Include="WindowsPhone\GamePad.cs" />
     <Compile Include="WindowsPhone\WPGamePlatform.cs" />
     <Compile Include="WindowsPhone\WPGameWindow.cs" />
     <Compile Include="WindowsPhone\XamlGame.cs" />
