@@ -275,7 +275,7 @@ namespace Microsoft.Xna.Framework.Graphics
                     return;
 
                 _dpi = value;
-                _d2dContext.DotsPerInch = new DrawingSizeF(_dpi, _dpi);
+                _d2dContext.DotsPerInch = new Size2F(_dpi, _dpi);
 
                 //if (OnDpiChanged != null)
                     //OnDpiChanged(this);
