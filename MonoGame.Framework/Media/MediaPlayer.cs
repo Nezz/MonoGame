@@ -41,6 +41,7 @@ purpose and non-infringement.
 #if WINDOWS_PHONE
 extern alias MicrosoftXnaFramework;
 using MsXna_MediaPlayer = MicrosoftXnaFramework::Microsoft.Xna.Framework.Media.MediaPlayer;
+using MsXna_FrameworkDispatcher = MicrosoftXnaFramework::Microsoft.Xna.Framework.FrameworkDispatcher;
 #endif
 
 
@@ -274,6 +275,7 @@ namespace Microsoft.Xna.Framework.Media
 				
 				return true;
 #elif WINDOWS_PHONE
+                MsXna_FrameworkDispatcher.Update();
                 return State == MediaState.Playing || MsXna_MediaPlayer.GameHasControl;
 #else
                 // TODO: Fix me!

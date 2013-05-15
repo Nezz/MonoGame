@@ -166,7 +166,6 @@ namespace MonoGame.Framework.WindowsPhone
 
         public override bool BeforeUpdate(GameTime gameTime)
         {
-            FrameworkDispatcher.Update();
             return true;
         }
 
