@@ -38,6 +38,11 @@ purpose and non-infringement.
 */
 #endregion License
 
+#if WINDOWS_PHONE
+extern alias MicrosoftXnaFramework;
+using MsSong = MicrosoftXnaFramework::Microsoft.Xna.Framework.Media.Song;
+#endif
+
 using System;
 using System.IO;
 
@@ -62,7 +67,66 @@ namespace Microsoft.Xna.Framework.Media
 #elif WINDOWS_MEDIA_SESSION
         private Topology _topology;
 #elif !WINDOWS_MEDIA_ENGINE
-		private SoundEffectInstance _sound;
+        private SoundEffectInstance _sound;
+#endif
+
+#if WINDOWS_PHONE
+        private MsSong song;
+
+        internal bool IsInternal
+        {
+            get { return this.song != null; }
+        }
+
+        internal MsSong InternalSong
+        {
+            get
+            {
+                return this.song;
+            }
+        }
+
+    /// <summary>
+        /// Gets the Album on which the Song appears.
+        /// </summary>
+        public Album Album
+        {
+            get
+            {
+                if (this.song != null)
+                    return this.song.Album;
+                
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Artist of the Song.
+        /// </summary>
+        public Artist Artist
+        {
+            get
+            {
+                if (this.song != null)
+                    return this.song.Artist;
+                
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Genre of the Song.
+        /// </summary>
+        public Genre Genre
+        {
+            get
+            {
+                if (this.song != null)
+                    return this.song.Genre;
+
+                return null;
+            }
+        }
 #endif
 		
 		private string _name;
@@ -92,6 +156,18 @@ namespace Microsoft.Xna.Framework.Media
             _sound = new SoundEffect(_name).CreateInstance();
 #endif
         }
+
+#if WINDOWS_PHONE
+        public static implicit operator Song(MsSong song)
+        {
+            return new Song(song);
+        }
+
+        private Song(MsSong song)
+        {
+            this.song = song;
+        }
+#endif
 
         ~Song()
         {
@@ -350,6 +426,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                    return this.song.Duration;
+#endif
                 return _duration;
             }
         }	
@@ -358,6 +438,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                return this.song.IsProtected;
+#endif
 				return false;
             }
         }
@@ -366,6 +450,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                return this.song.IsRated;
+#endif
 				return false;
             }
         }
@@ -374,6 +462,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                    return this.song.Name;
+#endif
 				return Path.GetFileNameWithoutExtension(_name);
             }
         }
@@ -382,6 +474,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                    return this.song.PlayCount;
+#endif
 				return _playCount;
             }
         }
@@ -390,6 +486,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                    return this.song.Rating;
+#endif
 				return 0;
             }
         }
@@ -398,6 +498,10 @@ namespace Microsoft.Xna.Framework.Media
         {
             get
             {
+#if WINDOWS_PHONE
+                if (this.song != null)
+                    return this.song.TrackNumber;
+#endif
 				return 0;
             }
         }

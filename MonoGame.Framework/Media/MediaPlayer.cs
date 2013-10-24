@@ -386,7 +386,12 @@ namespace Microsoft.Xna.Framework.Media
 		/// Playback starts immediately at the beginning of the song.
 		/// </summary>
         public static void Play(Song song)
-        {                        
+        {
+#if WINDOWS_PHONE
+            if (song.IsInternal)
+                MsXna_MediaPlayer.Play(song.InternalSong);
+
+#endif
             _queue.Clear();
             _numSongsInQueuePlayed = 0;
             _queue.Add(song);
@@ -395,18 +400,18 @@ namespace Microsoft.Xna.Framework.Media
             PlaySong(song);
         }
 		
-		public static void Play(SongCollection collection, int index = 0)
+		/*public static void Play(SongCollection collection, int index = 0)
 		{
             _queue.Clear();
             _numSongsInQueuePlayed = 0;
 
 			foreach(var song in collection)
-				_queue.Add(song);
+				_queue.Add((Song)song);
 			
 			_queue.ActiveSongIndex = index;
 			
 			PlaySong(_queue.ActiveSong);
-		}
+		}*/
 
         private static void PlaySong(Song song)
         {

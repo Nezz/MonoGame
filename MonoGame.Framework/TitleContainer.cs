@@ -40,7 +40,8 @@
 // 
 using System;
 using System.IO;
-
+using System.Linq;
+using System.Text;
 #if WINRT
 using System.Threading.Tasks;
 #elif IOS
@@ -148,13 +149,26 @@ namespace Microsoft.Xna.Framework
         internal static string GetFilename(string name)
         {
 #if WINRT
+            StringBuilder stringBuilder = new StringBuilder();
             // Replace non-windows seperators.
-            name = name.Replace('/', '\\');
+            string[] parts = name.Split(new []{"\\", "/"}, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 1; i < parts.Length; i++)
+            {
+                if (parts[i] != ".." && parts[i - 1] != "..")
+                {
+                    stringBuilder.Append(parts[i - 1]);
+                    stringBuilder.Append("\\");
+                }
+            }
+            stringBuilder.Append(parts[parts.Length - 1]);
+            stringBuilder.Append("\\");
+
+            return stringBuilder.ToString();
 #else
             // Replace Windows path separators with local path separators
             name = name.Replace('\\', Path.DirectorySeparatorChar);
-#endif
             return name;
+#endif
         }
     }
 }

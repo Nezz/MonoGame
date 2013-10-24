@@ -219,10 +219,16 @@
     <Compile Include="Input\Touch\TouchPanel.cs" />
     <Compile Include="Input\Touch\TouchPanelCapabilities.cs" />
     <Compile Include="LaunchParameters.cs" />
+    <Compile Include="Media\Album.cs" />
+    <Compile Include="Media\AlbumCollection.cs" />
+    <Compile Include="Media\Artist.cs" />
+    <Compile Include="Media\Genre.cs" />
+    <Compile Include="Media\MediaLibrary.cs" />
     <Compile Include="Media\MediaPlayer.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Media\MediaQueue.cs" />
+    <Compile Include="Media\MediaSource.cs" />
     <Compile Include="Media\MediaSourceType.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -236,9 +242,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Media\Song.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Media\SongCollection.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,6 +326,7 @@
     <Compile Include="WindowsPhone\DrawingSurfaceUpdateHandler.cs" />
     <Compile Include="WindowsPhone\DrawingSurfaceInterop.cs" />
     <Compile Include="WindowsPhone\GamePad.cs" />
+    <Compile Include="WindowsPhone\SongCollection.cs" />
     <Compile Include="WindowsPhone\SurfaceUpdateHandler.cs" />
     <Compile Include="WindowsPhone\WPGamePlatform.cs" />
     <Compile Include="WindowsPhone\WPGameWindow.cs" />

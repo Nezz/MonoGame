@@ -37,7 +37,10 @@
 // purpose and non-infringement.
 // */
 #endregion
-
+#if WINDOWS_PHONE
+extern alias MicrosoftXnaFramework;
+using MsMediaLibrary = MicrosoftXnaFramework::Microsoft.Xna.Framework.Media.MediaLibrary;
+#endif
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,17 +55,59 @@ namespace Microsoft.Xna.Framework.Media
 	{
         private PlaylistCollection _playLists;
 
-		public MediaLibrary ()
+#if WINDOWS_PHONE
+	    private MsMediaLibrary mediaLibrary;
+
+	    public AlbumCollection Albums
+	    {
+	        get
+	        {
+	            return this.mediaLibrary.Albums;
+	        }
+	    }
+
+	    public bool IsDisposed()
+	    {
+	        return this.mediaLibrary.IsDisposed;
+	    }
+#endif
+
+        public SongCollection Songs
+        {
+            get
+            {
+#if WINDOWS_PHONE
+                return this.mediaLibrary.Songs;
+#else
+				return new SongCollection();
+#endif
+            }
+        }
+
+        public MediaLibrary()
 		{
+#if WINDOWS_PHONE
+            this.mediaLibrary = new MsMediaLibrary();
+#endif
 		}
 		
-		public MediaLibrary (MediaSource mediaSource)
+		public MediaLibrary(MediaSource mediaSource)
 		{
+#if WINDOWS_PHONE
+		    throw new NotImplementedException();
+#endif
 		}
 		
 		public void Dispose()
 		{
+#if WINDOWS_PHONE
+            this.mediaLibrary.Dispose();
+#endif
 		}
+
+#if WINDOWS_PHONE
+        
+#endif
 		
         /*
 		public void SavePicture (string name, byte[] imageBuffer)
@@ -115,16 +160,6 @@ namespace Microsoft.Xna.Framework.Media
 			}
 		}
 #endif
-
-        public SongCollection Songs
-		{
-			get
-			{
-				return new SongCollection();
-			}
-		}
-		
-		
 	}
 }
 
