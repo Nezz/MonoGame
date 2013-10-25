@@ -388,8 +388,11 @@ namespace Microsoft.Xna.Framework.Media
         public static void Play(Song song)
         {
 #if WINDOWS_PHONE
-            if (song.IsInternal)
-                MsXna_MediaPlayer.Play(song.InternalSong);
+		    if (song.IsInternal)
+		    {
+		        MsXna_MediaPlayer.Play(song.InternalSong);
+		        return;
+		    }
 
 #endif
             _queue.Clear();
