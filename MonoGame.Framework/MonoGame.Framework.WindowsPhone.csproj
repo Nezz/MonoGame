@@ -224,10 +224,6 @@
     <Compile Include="Media\Artist.cs" />
     <Compile Include="Media\Genre.cs" />
     <Compile Include="Media\MediaLibrary.cs" />
-    <Compile Include="Media\MediaPlayer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Media\MediaQueue.cs" />
     <Compile Include="Media\MediaSource.cs" />
     <Compile Include="Media\MediaSourceType.cs">
       <SubType>Code</SubType>
@@ -323,9 +319,11 @@
     <Compile Include="Windows8\SharpDXHelper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WindowsPhone\MediaQueue.cs" />
     <Compile Include="WindowsPhone\DrawingSurfaceUpdateHandler.cs" />
     <Compile Include="WindowsPhone\DrawingSurfaceInterop.cs" />
     <Compile Include="WindowsPhone\GamePad.cs" />
+    <Compile Include="WindowsPhone\MediaPlayer.cs" />
     <Compile Include="WindowsPhone\SongCollection.cs" />
     <Compile Include="WindowsPhone\SurfaceUpdateHandler.cs" />
     <Compile Include="WindowsPhone\WPGamePlatform.cs" />
